@@ -4,3 +4,6 @@
 [submodule "plugins/lilypond-roman-numeral-tool"]
 	path = plugins/lilypond-roman-numeral-tool
 	url = https://github.com/davidnalesnik/lilypond-roman-numeral-tool.git
+[submodule "plugins/snippets"]
+	path = plugins/snippets
+	url = https://github.com/openlilylib/snippets.git
