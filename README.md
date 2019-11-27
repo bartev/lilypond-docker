@@ -66,3 +66,19 @@ lilypond docker image
 lilypond /home/<filename>
 ```
 
+# run lilypond
+
+1. change to the `/home/linux-scores` directory
+2. run `lilypond <filename>`
+
+# run lilypond on all `*.ly` files
+
+``` shell
+ls *.ly | xargs lilypond
+```
+
+or
+
+``` shell
+find -name "*.ly" | xargs lilypond
+```
