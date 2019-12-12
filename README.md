@@ -20,20 +20,20 @@ lilypond docker image
            ```
     2. `roman numerals`
     
-    ``` shell
+    ```
     git submodule add https://github.com/davidnalesnik/lilypond-roman-numeral-tool.git
     ```
     
 3. add `Dockerfile`
 4. build docker image
 
-    ``` shell
+    ```
     docker build -t lilydock .
     ```
 
 5. start a container
 
-    ``` shell
+    ```
     docker run -it -v ~/dev/github-bv/lily-jazz/:/home lilydock
     ```
 
@@ -45,14 +45,14 @@ lilypond docker image
 
 6. clean up when done
 
-    ``` shell
+    ```
     docker ps -a  # get list of processes
     docker rm -f <processes name>
     ```
     
 7. remove the image completely
 
-    ``` shell
+    ```
     docker rmi lilydock
     ```
     
@@ -62,7 +62,7 @@ lilypond docker image
 1. start docker (see above)
 2. build the file
 
-``` shell
+```
 lilypond /home/<filename>
 ```
 
@@ -73,12 +73,12 @@ lilypond /home/<filename>
 
 # run lilypond on all `*.ly` files
 
-``` shell
+```
 ls *.ly | xargs lilypond
 ```
 
 or
 
-``` shell
+```
 find -name "*.ly" | xargs lilypond
 ```

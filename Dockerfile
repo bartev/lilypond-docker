@@ -26,7 +26,7 @@ RUN apt-get -y install lilypond
 # or
 # RUN apt-get build-dep -y lilypond
 
-RUN apt-get -y install emacs, vim
+RUN apt-get -y install emacs vim
 
 # Add common library files
 
