@@ -53,5 +53,9 @@ RUN cp /root/plugins/lilyjazz/otf/* /usr/share/lilypond/*/fonts/otf/
 RUN cp /root/plugins/lilyjazz/svg/* /usr/share/lilypond/*/fonts/svg/
 RUN cp /root/plugins/lilyjazz/supplementary-files/*/*.otf /usr/share/lilypond/*/fonts/otf/
 
+RUN apt-get install -y musixtex
+# may require interaction
+RUN apt-get install texlive-pictures
+
 # startup in bash shell
 CMD ["/bin/bash"]
