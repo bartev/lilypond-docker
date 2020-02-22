@@ -1,3 +1,5 @@
+# v1.0
+
 # https://towardsdatascience.com/learn-enough-docker-to-be-useful-b0b44222eef5
 # https://github.com/asbjoree/docker-lilypond/blob/master/Dockerfile
 
@@ -55,7 +57,12 @@ RUN cp /root/plugins/lilyjazz/supplementary-files/*/*.otf /usr/share/lilypond/*/
 
 RUN apt-get install -y musixtex
 # may require interaction
-RUN apt-get install texlive-pictures
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends texlive
+RUN DEBIAN_FRONTEND='noninteractive' apt-get install -y --no-install-recommends texlive-pictures
+
+# to fix tikz not found error
+# https://tex.stackexchange.com/questions/522899/ubuntu-18-04-latex-error-file-tikzpicture-sty-not-found
+RUN apt-get install -y texlive-latex-extra
 
 # startup in bash shell
 CMD ["/bin/bash"]

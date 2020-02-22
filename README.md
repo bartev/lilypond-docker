@@ -30,6 +30,10 @@ lilypond docker image
     ```
     docker build -t lilydock .
     ```
+    
+    ```
+    docker build -t lilydock:latest -t lilydock:v1.0 .
+    ```    
 
 5. start a container
 
