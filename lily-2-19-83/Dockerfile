@@ -10,20 +10,25 @@ ENV ADMIN="bartev"
 ENV TERM linux
 
 RUN apt-get update
+RUN apt-get -y install tree
 
 # https://www.gnu.org/software/guile/download/
 # guile is a version of scheme that is used with lilypond
 # RUN apt-get install guile-2.2
 
-COPY plugins /root/plugins
+COPY ./plugins /root/plugins
+COPY ./lilypond-2.19.83-1.linux-64.sh /root/
+
+RUN chmod +x /root/lilypond-2.19.83-1.linux-64.sh
+RUN /root/lilypond-2.19.83-1.linux-64.sh --batch
 
 # COPY . ./app
 # Set tell the installer that we are working in a noninteractive ENV 
 # ENV DEBIAN_FRONTEND noninteractive
 
 # Install Lilypond. 
-RUN apt-get -y install lilypond
-RUN apt-get -y install frescobaldi
+# RUN apt-get -y install lilypond
+# RUN apt-get -y install frescobaldi
 
 RUN apt-get -y install vim
 
@@ -37,20 +42,26 @@ RUN apt-get -y install vim
 # \include statement. This is how the language-dependent files 
 # like ‘english.ly’ are included.
 
+# /usr/local/lilypond/usr/share/lilypond/current/fonts
+
 # note my location is /usr/share vs asbjoree's /usr/local/share -- maybe because I'm not building from source code?
 # the /*/ takes the place of the version number?
 
-# # Roman numerals
-RUN cp /root/plugins/lilypond-roman-numeral-tool/roman_numeral_analysis_tool.ily /usr/share/lilypond/*/ly/
+# # # Roman numerals
+# RUN cp /root/plugins/lilypond-roman-numeral-tool/roman_numeral_analysis_tool.ily /usr/share/lilypond/*/ly/
+RUN cp /root/plugins/lilypond-roman-numeral-tool/roman_numeral_analysis_tool.ily /usr/local/lilypond/usr/share/lilypond/current/ly/
 
-# # Lilyjazz
+# # # Lilyjazz
 
-# RUN cp /root/plugins/lilyjazz/stylesheet/*.ily /usr/share/lilypond/*/ly/
-RUN cp /root/plugins/bv-lilyjazz/stylesheets/*.ily /usr/share/lilypond/*/ly/
+# # RUN cp /root/plugins/lilyjazz/stylesheet/*.ily /usr/share/lilypond/*/ly/
+# RUN cp /root/plugins/bv-lilyjazz/stylesheets/*.ily /usr/share/lilypond/*/ly/
+RUN cp /root/plugins/bv-lilyjazz/stylesheets/*.ily /usr/local/lilypond/usr/share/lilypond/current/ly/
 
-RUN cp /root/plugins/lilyjazz/otf/* /usr/share/lilypond/*/fonts/otf/
-RUN cp /root/plugins/lilyjazz/svg/* /usr/share/lilypond/*/fonts/svg/
-RUN cp /root/plugins/lilyjazz/supplementary-files/*/*.otf /usr/share/lilypond/*/fonts/otf/
+
+RUN cp /root/plugins/lilyjazz/otf/* /usr/local/lilypond/usr/share/lilypond/current/fonts/otf/
+RUN cp /root/plugins/lilyjazz/svg/* /usr/local/lilypond/usr/share/lilypond/current/fonts/svg/
+RUN cp /root/plugins/lilyjazz/supplementary-files/*/*.otf /usr/local/lilypond/usr/share/lilypond/current/fonts/otf/
+
 
 # startup in bash shell
 CMD ["/bin/bash"]
