@@ -40,6 +40,12 @@ lilypond docker image
     ```
     docker run -it -v ~/dev/github-bv/lily-jazz/:/home lilydock
     ```
+    
+    or, to get a 2.0 version to run on the mac from docker.com
+    
+    ```
+    docker run -it -v ~/dev/github-bv/lily-jazz/:/home bartev/lilydock20mac
+    ```
 
     * This command runs docker in `interactive` mode.
     * mounts the directory `~/dev/github-bv/lily-jazz/` into `/home` in the container
