@@ -19,30 +19,30 @@ lilypond docker image
            git submodule add https://github.com/OpenLilyPondFonts/lilyjazz.git
            ```
     2. `roman numerals`
-    
+
     ```
     git submodule add https://github.com/davidnalesnik/lilypond-roman-numeral-tool.git
     ```
-    
+
 3. add `Dockerfile`
 4. build docker image
 
     ```
     docker build -t lilydock .
     ```
-    
+
     ```
     docker build -t lilydock:latest -t lilydock:v1.0 .
-    ```    
+    ```
 
 5. start a container
 
     ```
     docker run -it -v ~/dev/github-bv/lily-jazz/:/home lilydock
     ```
-    
+
     or, to get a 2.0 version to run on the mac from docker.com
-    
+
     ```
     docker run -it -v ~/dev/github-bv/lily-jazz/:/home bartev/lilydock20mac
     ```
@@ -59,13 +59,13 @@ lilypond docker image
     docker ps -a  # get list of processes
     docker rm -f <processes name>
     ```
-    
+
 7. remove the image completely
 
     ```
     docker rmi lilydock
     ```
-    
+
 
 # build a file
 
