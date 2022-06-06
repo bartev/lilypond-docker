@@ -15,16 +15,16 @@
   (let* ((alt (ly:pitch-alteration pitch)))
     (make-line-markup
       (list
-	(make-simple-markup
-	  (vector-ref #("C" "D" "E" "F" "G" "A" "B")
-	    (ly:pitch-notename pitch)))
-	(if (= alt 0)			; alteration ?
-	  (markup "")		; do nothing
-	  (if (= alt FLAT)	; flat or sharp
-	    (markup ">")
-	    (markup "<")
-	  )
-	)
+  (make-simple-markup
+    (vector-ref #("C" "D" "E" "F" "G" "A" "B")
+      (ly:pitch-notename pitch)))
+  (if (= alt 0)			; alteration ?
+    (markup "")		; do nothing
+    (if (= alt FLAT)	; flat or sharp
+      (markup ">")
+      (markup "<")
+    )
+  )
       )
     )
   )
@@ -45,7 +45,7 @@
     (markup "maj" extension)))
 % alternative, use capital "M"
 % (markup #:super "M" #:super extension)
-    % 
+    %
 
 % for chords with up to three alterations, stacked on top of each other
 #(define-markup-command (acAlt layout props strA strB strC) (string? string? string?)
@@ -64,23 +64,26 @@
 % modify the built-in "chordNameExceptions"
 %----- change chord exceptions for jazz notation -----
 %
-%	degrés 			markup				% écriture
+%	degrés      markup				% écriture
 JazzChordsList = {
 % minor third chords - 3 notes
   <c es ges>1-\markup { \super "dim." } % :dim
   <c es g>-\markup { \acMin #"" } % :m
 
-% minor third chords - 4 notes
+  %% BV 2022-01=17 change half-dim and augmented
+  %% minor third chords - 4 notes
   <c es ges beses>-\markup { \super "7dim" } % :dim7
   <c es gis>-\markup { \acMin #"aug" } % :m5+ (Ab/C)
   <c es g a>-\markup { \acMin #"6" } % :m6
-  <c es ges bes>-\markup { \acMin #"7 >5" } % :m7.5-
+  %% <c es ges bes>-\markup { \acMin #"7 >5" } % :m7.5-
+  <c es ges bes>-\markup { #"@7" } % :m7.5- (with half dim symbol)
   <c es g bes>-\markup { \acMin #"7" } % :m7
-  <c es gis bes>-\markup { \acMin #"7 <5" } % :m7.5+
+  %% <c es gis bes>-\markup { \acMin #"7 <5" } % :m7.5+
+  <c es ges bes>-\markup { \acMin #"+" }
   <c es g b>-\markup { \acMin #"M7" } % :m7+
   <c es g d'>-\markup { \acMin #"add9" } % :m5.9
 
-% minor third chords - 5+ notes
+                                % minor third chords - 5+ notes
   <c es g a d'>-\markup { \acMin #"6/9" } % :m6.9
   <c es g bes des'>-\markup { \acMin #"7(>9)" } % :m7.9-
   <c es g bes d'>-\markup { \acMin #"9" } % :m9
@@ -93,16 +96,16 @@ JazzChordsList = {
   <c es ges bes d' f'>-\markup { \acMin #"11(>5)" } % :m11.5-
   <c es g bes d' f' a'>-\markup { \acMin #"13" } % :m13
 
-% major third chords - 3 notes
+                                % major third chords - 3 notes
   <c e ges>-\markup { \super ">5" } % :5-
   <c e gis>-\markup { \super "aug" } % :aug
 
-% major third chords - 4 notes
+                                % major third chords - 4 notes
   <c e g a d'>-\markup {
-	  \super "6"
-	  \hspace #-0.5 \raise #0.7 \tiny "/"
-	  \hspace #-0.5 \tiny "9"
-	  }	% :6.9
+    \super "6"
+    \hspace #-0.5 \raise #0.7 \tiny "/"
+    \hspace #-0.5 \tiny "9"
+    }	% :6.9
 % special chords
   <c e g bes c'>-\markup { \super "7(Alt)" } % :c:8
   <c e g b>-\markup { \acMaj #"7" } % :maj
@@ -149,4 +152,3 @@ JazzChords = #(append (sequential-music-to-chord-exceptions JazzChordsList #t) i
     \override ChordName.font-name = #"lilyjazz-chord"  % use the custom font for displaying the chords
   }
 }
-
